@@ -1,0 +1,28 @@
+{
+  "name": "mahc",
+  "version": "1.0.0",
+  "description": "GIS and database utilities for MAHC.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hdavidzhu/mahc.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hdavidzhu/mahc/issues"
+  },
+  "homepage": "https://github.com/hdavidzhu/mahc#readme",
+  "devDependencies": {
+    "http-server": "^0.10.0",
+    "light-server": "^2.0.2"
+  },
+  "dependencies": {
+    "axios": "^0.16.1",
+    "bluebird": "^3.5.0",
+    "rx": "^4.1.0"
+  }
+}
