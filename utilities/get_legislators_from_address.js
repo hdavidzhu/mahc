@@ -1,3 +1,5 @@
+// NOTE: This code is ported over to python and is no longer used.
+
 var Promise = require('bluebird');
 const axios = require('axios');
 const secrets = require('../secrets.json');
@@ -10,7 +12,6 @@ function processAddress(address) {
 }
 
 function requestGeocoding(address) {
-  console.log(secrets.google_geocoding_api_key);
   return axios.get('https://maps.googleapis.com/maps/api/geocode/json'
     + '?key=' + secrets.google_geocoding_api_key
     + '&address=' + address);
@@ -39,7 +40,12 @@ function getLegislatorsFromAddress(address) {
     .then(requestGeocoding)
     .then(getLatLong)
     .then(requestOpenStates)
-    .then(getLegislators)
+    .then(getLegislators);
 }
 
-getLegislatorsFromAddress("111 Perkins Street, Apt. 253, Jamaica Plain, MA  02130-4338");
+module.exports = getLegislatorsFromAddress;
+
+if (require.main === module) {
+  address = process.argv.slice(2).join(" ");
+  getLegislatorsFromAddress(address);
+}
