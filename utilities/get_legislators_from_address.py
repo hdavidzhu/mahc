@@ -31,13 +31,10 @@ def get_legislators_from_address(address):
         legislators = get_legislators(location)
     except Exception as e:
         print('-' * 60)
+        print("Address: %s" % address)
         print("Error: %s" % e)
         traceback.print_exc(file=sys.stdout)
         print('-' * 60)
-
-        print(address)
-        print(location)
-        print(legislators)
 
     return legislators
 
