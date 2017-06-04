@@ -1,29 +1,46 @@
 import json
 import requests
+import sys, traceback
 
 with open('../secrets.json') as secrets_file:
     secrets = json.load(secrets_file)
 
-def process_address(address):
-    return "+".join(address.split(' '))
-
 def get_lat_lng(address):
-    return requests.get('https://maps.googleapis.com/maps/api/geocode/json' \
-        + '?key=' + secrets['google_geocoding_api_key'] \
-        + '&address=' + address
-        ).json()['results'][0]['geometry']['location']
+    payload = {
+        'key': secrets['google_geocoding_api_key'],
+        'address': address
+    }
+    return requests.get('https://maps.googleapis.com/maps/api/geocode/json',
+        params = payload).json()['results'][0]['geometry']['location']
 
 def get_legislators(location):
-    return requests.get('https://openstates.org/api/v1/legislators/geo/' \
-        + '?apikey=' + secrets['openstates_api_key'] \
-        + '&lat=' + str(location['lat']) + '&long=' + str(location['lng'])).json()
+    payload = {
+        'apikey': secrets['openstates_api_key'],
+        'lat': location['lat'],
+        'long': location['lng']
+    }
+    return requests.get('https://openstates.org/api/v1/legislators/geo/',
+        params = payload).json()
 
 def get_legislators_from_address(address):
-    address = process_address(address)
-    location = get_lat_lng(address)
-    legislators = get_legislators(location)
+    location = None
+    legislators = None
+
+    try:
+        location = get_lat_lng(address)
+        legislators = get_legislators(location)
+    except Exception as e:
+        print('-' * 60)
+        print("Error: %s" % e)
+        traceback.print_exc(file=sys.stdout)
+        print('-' * 60)
+
+        print(address)
+        print(location)
+        print(legislators)
+
     return legislators
 
 if __name__ == "__main__":
-    address = "111 Perkins Street, Apt. 253 Jamaica Plain, MA  02130-4338"
+    address = "226 Chestnut St #2, Cambridge, MA 02139, USA"
     print(get_legislators_from_address(address))
