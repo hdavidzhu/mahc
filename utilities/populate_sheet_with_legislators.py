@@ -1,10 +1,11 @@
 import pandas as pd
+from xls_io import XLSIO
 from get_legislators_from_address import get_legislators_from_address
 
 def populate_sheet_with_legislators(name, address_column_names):
-    # Load in spreadsheet
-    workbook = pd.ExcelFile(name + '.xls')
-    worksheet = workbook.parse(0)
+
+    my_XLSIO = XLSIO(name)
+    worksheet = my_XLSIO.load()
 
     # Combine columns into full address column
     worksheet['Combined address'] = ''
@@ -39,16 +40,13 @@ def populate_sheet_with_legislators(name, address_column_names):
     # Set extracted lists to new columns
     worksheet['Senator name'] = senators_names
 
-    # Populate columns and save
-    writer = pd.ExcelWriter(name + '_output.xls')
-    worksheet.to_excel(writer, 'Sheet1')
-    writer.save()
+    my_XLSIO.save()
 
 if __name__ == "__main__":
-    # populate_sheet_with_legislators(
-    #     name = '../files/renter_deduction_bill',
-    #     address_column_names = ['Street address', 'City'])
-
     populate_sheet_with_legislators(
-        name = '../files/non_member',
-        address_column_names = ['Street Address', 'Town', 'Zip'])
+        name = '../files/renter_deduction_bill',
+        address_column_names = ['Street address', 'City'])
+
+    # populate_sheet_with_legislators(
+    #     name = '../files/non_member',
+    #     address_column_names = ['Street Address', 'Town', 'Zip'])
