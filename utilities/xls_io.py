@@ -16,7 +16,7 @@ class XLSIO(object):
         # Returns a reference of the worksheet. Make sure not to overwrite
         return self.worksheet
 
-    def save(self, file_name = None, worksheet = None):
+    def save(self, file_name = None, worksheet = None, extension = '_output.xls'):
         if file_name is None:
             file_name = self.file_name
 
@@ -24,6 +24,6 @@ class XLSIO(object):
             worksheet = self.worksheet
 
         # Populate columns and save
-        writer = pd.ExcelWriter(file_name + '_output.xls')
+        writer = pd.ExcelWriter(file_name + extension)
         worksheet.to_excel(writer, 'Sheet1')
         writer.save()
