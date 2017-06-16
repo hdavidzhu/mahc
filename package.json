@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/hdavidzhu/mahc#readme",
   "devDependencies": {
-    "http-server": "^0.10.0",
     "light-server": "^2.0.2"
   },
   "dependencies": {
