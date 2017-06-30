@@ -1,0 +1,7 @@
+{
+  "development": {
+    "database": "mahc",
+    "dialect": "sqlite",
+    "storage": "../db/mahc.sqlite"
+  }
+}
