@@ -4,7 +4,7 @@
   "description": "GIS and database utilities for MAHC.",
   "main": "index.js",
   "scripts": {
-    "start:dev": "nodemon ./bin/www",
+    "start:dev": "node_modules/.bin/nodemon ./bin/www",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/hdavidzhu/mahc#readme",
   "devDependencies": {
-    "light-server": "^2.0.2",
     "nodemon": "^1.11.0",
     "sequelize-cli": "^2.7.0"
   },

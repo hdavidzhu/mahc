@@ -1,5 +1,5 @@
 const axios = require('axios');
-const secrets = require('../../secrets');
+const secrets = require('../secrets');
 const Community = require('../models').Community;
 
 module.exports = {
