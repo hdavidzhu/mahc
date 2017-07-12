@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 
 class CommmunityForm extends React.Component {
   constructor(props) {
@@ -23,8 +24,14 @@ class CommmunityForm extends React.Component {
   }
 
   handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.name + this.state.address);
     event.preventDefault();
+    console.log(this.state);
+    axios.post('/api/communities', this.state).then(() => {
+      alert('A name was submitted: ' + this.state.name + this.state.address);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
 
   render() {

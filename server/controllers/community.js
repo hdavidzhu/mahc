@@ -15,7 +15,10 @@ module.exports = {
   list(req, res) {
     return Community
       .all()
-      .then(communities => res.status(201).send(communities))
+      .then(communities => {
+        console.log(communities);
+        res.status(200).send(communities);
+      })
       .catch(error => res.status(400).send(error));
   },
 
@@ -33,7 +36,7 @@ module.exports = {
           return community.save();
         });
       })))
-      .then(communities => res.status(201).send(communities))
+      .then(communities => res.status(200).send(communities))
       .catch(error => res.status(400).send(error));
   }
 };

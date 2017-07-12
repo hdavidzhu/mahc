@@ -2,6 +2,6 @@
   "development": {
     "database": "mahc",
     "dialect": "sqlite",
-    "storage": "./server/db/mahc.sqlite"
+    "storage": "./db/mahc.sqlite"
   }
 }
