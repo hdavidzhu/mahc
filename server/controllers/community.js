@@ -29,6 +29,17 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
 
+  delete(req, res) {
+    return Community
+      .destroy({
+        where: {
+          id: req.query.id
+        }
+      })
+      .then(() => res.status(200))
+      .catch(error => res.status(400).send(error));
+  },
+
   updateMissingLatLng(req, res) {
     return Community
       .all() // TODO: Make this only apply to listings without geocoding

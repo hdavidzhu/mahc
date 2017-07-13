@@ -6,5 +6,6 @@ module.exports = (app) => {
   }));
   app.get('/api/communities', communityController.list);
   app.post('/api/communities', communityController.create);
+  app.delete('/api/communities', communityController.delete);
   app.get('/api/communities/update-missing-lat-lng', communityController.updateMissingLatLng);
 }
