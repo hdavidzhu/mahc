@@ -36,7 +36,7 @@ module.exports = {
           id: req.query.id
         }
       })
-      .then(() => res.status(200))
+      .then(() => res.status(200).send())
       .catch(error => res.status(400).send(error));
   },
 

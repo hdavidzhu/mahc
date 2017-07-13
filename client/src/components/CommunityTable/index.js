@@ -15,7 +15,7 @@ export default class CommunityTable extends Component {
     axios
       .delete('/api/communities', {params: {id: communityId}})
       .then((res) => {
-        console.log("deleted");
+        this.props.onUpdate();
       });
   }
 

@@ -26,9 +26,7 @@ class CommmunityForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     console.log(this.state);
-    axios.post('/api/communities', this.state).then(() => {
-      alert('A name was submitted: ' + this.state.name + this.state.address);
-    })
+    axios.post('/api/communities', this.state).then(this.props.onSubmit)
     .catch((error) => {
       console.log(error);
     });

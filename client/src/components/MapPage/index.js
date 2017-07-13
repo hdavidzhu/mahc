@@ -68,10 +68,6 @@ export default class MapPage extends React.Component {
         map.addLayer(locationLayer);
       });
 
-    return (
-      <div>
-        <button>Refresh</button>
-      </div>
-    );
+    return null;
   }
 }

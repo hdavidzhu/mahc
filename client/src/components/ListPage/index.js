@@ -11,10 +11,14 @@ export default class ListPage extends React.Component {
       communities: []
     }
 
-    this.getCommunities = this.getCommunities.bind(this);
+    this.loadCommunities = this.loadCommunities.bind(this);
   }
 
-  getCommunities() {
+  componentDidMount() {
+    this.loadCommunities();
+  }
+
+  loadCommunities() {
     axios.get('/api/communities').then((res) => {
       this.setState({ communities: res.data });
     });
@@ -23,10 +27,10 @@ export default class ListPage extends React.Component {
   render() {
     return (
       <list-page>
-        Hello! This is the list page.
-        <CommunityForm />
-        <button onClick={this.getCommunities}>Click me!</button>
-        <CommunityTable communities={this.state.communities}/>
+        <CommunityForm onSubmit={this.loadCommunities}/>
+        <CommunityTable
+          communities={this.state.communities}
+          onUpdate={this.loadCommunities} />
       </list-page>
     );
   }
