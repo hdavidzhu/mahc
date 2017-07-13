@@ -1,13 +1,14 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import ListPage from '../ListPage';
+import MapPage from '../MapPage';
 
 const Main = () => (
   <main>
     <Switch>
       {/* <Route exact path='/' component={HomePage} /> */}
       <Route path='/list' component={ListPage} />
-      {/* <Route path='/map' component={MapPage} /> */}
+      <Route path='/map' component={MapPage} />
     </Switch>
   </main>
 );
