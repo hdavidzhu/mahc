@@ -9,9 +9,6 @@ export default class CommunityTable extends Component {
   }
 
   render() {
-
-    console.log(this.props.communities);
-
     return (
       <table>
         <tbody>
@@ -21,6 +18,7 @@ export default class CommunityTable extends Component {
                 <tr key={index} id={`row${index}`}>
                   <td>{community.name}</td>
                   <td>{community.address}</td>
+                  <td>{community.longitude}, {community.latitude  }</td>
                 </tr>
               );
             })

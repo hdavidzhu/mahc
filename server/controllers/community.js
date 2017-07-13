@@ -2,14 +2,21 @@ const axios = require('axios');
 const secrets = require('../secrets');
 const Community = require('../models').Community;
 
+const getLocationFromAddress = require('../utils/location_provider');
+
 module.exports = {
   create(req, res) {
-    return Community.create({
-      name: req.body.name,
-      address: req.body.address
-    })
-    .then(community => res.status(201).send(community))
-    .catch(error => res.status(400).send(error));
+    return getLocationFromAddress(req.body.address)
+      .then((location) => {
+        return Community.create({
+          name: req.body.name,
+          address: req.body.address,
+          latitude: location.lat,
+          longitude: location.lng
+        })
+      })
+      .then(community => res.status(201).send(community))
+      .catch(error => res.status(400).send(error));
   },
 
   list(req, res) {
