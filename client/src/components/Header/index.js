@@ -1,7 +1,12 @@
 import React from 'react';
 
-const Header = () => {
-  <div></div>
-}
+export default class Header extends React.Component {
 
-export default Header;
+  render() {
+    return (
+      <div>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" />
+      </div>
+    );
+  }
+}

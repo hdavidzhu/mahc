@@ -13,7 +13,26 @@ export default class MapPage extends React.Component {
     super(props);
   }
 
+  componentDidMount() {
+    this.renderMap();
+  }
+
+  componentDidUpdate() {
+    this.renderMap();
+  }
+
   render() {
+    return (
+      <div id="my-map" ref="myMap"></div>
+    );
+  }
+
+  renderMap() {
+
+    // Clear old maps.
+    while (this.refs.myMap.firstChild) {
+      this.refs.myMap.removeChild(this.refs.myMap.firstChild);
+    }
 
     // TODO: Refactor into a better location.
     var map = new OpenLayer.Map({
@@ -22,7 +41,7 @@ export default class MapPage extends React.Component {
           source: new OpenLayer.source.OSM()
         })
       ],
-      target: 'my-map',
+      target: this.refs.myMap,
       controls: OpenLayer.control.defaults({
         attributionOptions: ({
           collapsible: false
@@ -67,7 +86,5 @@ export default class MapPage extends React.Component {
         vectorSource.addFeatures(features);
         map.addLayer(locationLayer);
       });
-
-    return null;
   }
 }
